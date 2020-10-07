@@ -1,9 +1,10 @@
 # Denoising Diffusion Implicit Models (DDIM)
 
-PyTorch implementation for the paper, by [Jiaming Song](http://tsong.me), Chenlin Meng and [Stefano Ermon](http://cs.stanford.edu/~ermon), 
-Stanford Artificial Intelligence Laboratory
+[Jiaming Song](http://tsong.me), Chenlin Meng and [Stefano Ermon](http://cs.stanford.edu/~ermon), Stanford
 
-Implements sampling from an implicit model that is trained with the same procedure as [Denoising Diffusion Probabilistic Model](https://hojonathanho.github.io/diffusion/).
+Implements sampling from an implicit model that is trained with the same procedure as [Denoising Diffusion Probabilistic Model](https://hojonathanho.github.io/diffusion/), but doesn't make you bankrupt (click image below):
+
+[![](http://img.youtube.com/vi/WCKzxoSduJQ/0.jpg)](http://www.youtube.com/watch?v=WCKzxoSduJQ "DDIM - CelebA")
 
 
 ## Running the Experiments
@@ -46,6 +47,18 @@ The above two cases contain some hard-coded lines specific to producing the imag
 
 
 ## References and Acknowledgements
+```
+@article{song2020denoising,
+  title={Denoising Diffusion Implicit Models},
+  author={Song, Jiaming and Meng, Chenlin and Ermon, Stefano},
+  journal={arXiv:2010.02502},
+  year={2020},
+  month={October},
+  abbr={Preprint},
+  url={https://arxiv.org/abs/2010.02502}
+}
+```
+
 
 This implementation is based on
 [https://github.com/hojonathanho/diffusion](diffusion) (the DDPM TensorFlow repo), 

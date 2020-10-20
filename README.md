@@ -33,7 +33,7 @@ python main.py --config {DATASET}.yml --exp {PROJECT_PATH} --use_pretrained --sa
 ```
 the `--use_pretrained` option will automatically load the model according to the dataset.
 
-We provide a CelebA 64x64 model [here](https://drive.google.com/drive/folders/1si6Gn3U2ZrggnfYXOESWVFIwcNbyfh5o?usp=sharing), and use the DDPM version for CIFAR10 and LSUN.
+We provide a CelebA 64x64 model [here](https://drive.google.com/file/d/1R_H-fJYXSH79wfSKs9D-fuKQVan5L-GR/view?usp=sharing), and use the DDPM version for CIFAR10 and LSUN.
 
 If you want to use the version with the larger variance in DDPM: use the `--sample_type ddpm_noisy` option.
 

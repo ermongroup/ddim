@@ -5,6 +5,7 @@ import torchvision.transforms as transforms
 import torchvision.transforms.functional as F
 from torchvision.datasets import CIFAR10
 from datasets.celeba import CelebA
+from datasets.vton import VTON
 from datasets.ffhq import FFHQ
 from datasets.lsun import LSUN
 from torch.utils.data import Subset
@@ -175,6 +176,16 @@ def get_dataset(args, config):
         )
         test_dataset = Subset(dataset, test_indices)
         dataset = Subset(dataset, train_indices)
+
+    elif config.data.dataset == "VTON":
+        dataset = VTON(
+            path=os.path.join("/home/bellone/Desktop/Partition/diffussion/ddim/vton", "dataset", "image"),
+            transform=transforms.Compose(
+                [transforms.RandomHorizontalFlip(p=0.5), transforms.ToTensor()]
+            ),
+            resolution=config.data.image_size,
+        )
+        test_dataset = None
     else:
         dataset, test_dataset = None, None
 

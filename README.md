@@ -6,6 +6,58 @@ Implements sampling from an implicit model that is trained with the same procedu
 
 <a href="http://www.youtube.com/watch?v=WCKzxoSduJQ" target="_blank">![](http://img.youtube.com/vi/WCKzxoSduJQ/0.jpg)</a>
 
+## **Integration with 🤗 Diffusers library**
+
+DDIM is now also available in 🧨 Diffusers and accesible via the [DDIMPipeline](https://huggingface.co/docs/diffusers/api/pipelines/ddim).
+Diffusers allows you to test DDIM in PyTorch in just a couple lines of code.
+
+You can install diffusers as follows:
+
+```
+pip install diffusers torch accelerate
+```
+
+And then try out the model with just a couple lines of code:
+
+```python
+from diffusers import DDIMPipeline
+
+model_id = "google/ddpm-cifar10-32"
+
+# load model and scheduler
+ddim = DDIMPipeline.from_pretrained(model_id)
+
+# run pipeline in inference (sample random noise and denoise)
+image = ddim(num_inference_steps=50).images[0]
+
+# save image
+image.save("ddim_generated_image.png")
+```
+
+More DDPM/DDIM models compatible with hte DDIM pipeline can be found directly [on the Hub](https://huggingface.co/models?library=diffusers&sort=downloads&search=ddpm)
+
+To better understand the DDIM scheduler, you can check out [this introductionary google colab](https://colab.research.google.com/github/huggingface/notebooks/blob/main/diffusers/diffusers_intro.ipynb)
+
+The DDIM scheduler can also be used with more powerful diffusion models such as [Stable Diffusion](https://huggingface.co/docs/diffusers/v0.7.0/en/api/pipelines/stable_diffusion#stable-diffusion-pipelines)
+
+You simply need to [accept the license on the Hub](https://huggingface.co/runwayml/stable-diffusion-v1-5), login with `huggingface-cli login` and install transformers:
+
+```
+pip install transformers
+```
+
+Then you can run:
+
+```python
+from diffusers import StableDiffusionPipeline, DDIMScheduler
+
+ddim = DDIMScheduler.from_config("runwayml/stable-diffusion-v1-5", subfolder="scheduler")
+pipeline = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", scheduler=ddim)
+
+image = pipeline("An astronaut riding a horse.").images[0]
+
+image.save("astronaut_riding_a_horse.png")
+```
 
 ## Running the Experiments
 The code has been tested on PyTorch 1.6.
